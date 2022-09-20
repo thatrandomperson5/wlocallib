@@ -1,6 +1,7 @@
 version     = "0.1.0"
 author      = "ThatRandomPerson5"
 description = "A lib for localizing html."
+license = "GNU General Public License v3.0"
 
 skipDirs = @["tests"]
 
