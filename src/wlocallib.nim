@@ -14,7 +14,7 @@ proc newConfig*(compress: string; val=true): LocalizerConfig =
   return LocalizerConfig(compress: compress, validate: val)
 proc localizeWebsite*(url: string; config = newConfig("nil")): string =
   var wdata = getUrl(url)
-  if config.val:
+  if config.validate:
     wdata = ValidateHtml(wdata)
   if config.compress == "before":
     wdata = compress(wdata)
@@ -25,7 +25,7 @@ proc localizeWebsite*(url: string; config = newConfig("nil")): string =
   
 proc localizeFile*(filepath: string; config = newConfig("nil")): string = 
   var wdata = readFile(filepath)
-  if config.val:
+  if config.validate:
     wdata = ValidateHtml(wdata)
   if config.compress == "before":
     wdata = compress(wdata)
@@ -35,7 +35,7 @@ proc localizeFile*(filepath: string; config = newConfig("nil")): string =
     return wdata.localize("file://" & filepath).doctype(wdata)
 proc localizeString*(str: string; config = newConfig("nil")): string = 
   var wdata = str
-  if config.val:
+  if config.validate:
     wdata = ValidateHtml(wdata)
   if config.compress == "before":
     wdata = compress(wdata)
